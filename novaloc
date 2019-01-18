@@ -1,0 +1,29 @@
+#!/bin/sh
+#
+# This script is intended to be used both by internal Palm developers and 
+# external 3rd party developers, but not the build. 
+
+if [ "$NOVALOC" = "" ]
+then
+	TOOL=$(dirname $0)
+else
+	TOOL=$NOVALOC
+fi
+
+JAR=$(ls $TOOL/loc-*.jar)
+
+if [ ! -f "$JAR" ]
+then
+	echo
+	echo Error: localization jar file not found. Please use novaloc
+	echo from the distribution directory where the jars can be found
+	echo or set the NOVALOC environment variable to point to the jars.
+	exit 2
+fi
+
+export JAVA_HOME=/usr/lib/jvm/java-6-sun
+export PATH=$JAVA_HOME/bin:$PATH
+export CLASSPATH="$TOOL/*:$TOOL"
+
+
+java -Xmx1024M com.palm.localization.tools.NovaLoc $*

@@ -1,0 +1,48 @@
+localization-tool
+=======================
+
+Summary
+-------
+webOS Localization tool
+
+Description
+-----------
+The webOS Localization tool is used to generate string resources.
+This extracts localizable string from your source codes and translation files,
+writes out string resources in various format.
+Translation files should be XLIFF 2.0 format.
+
+How to run on Linux
+=====================
+
+## Dependencies
+* openjdk-10-jdk-native
+
+## Run
+$ ./buildloc -n ${app_name} -x ${xliff_path} --list-of-locales ${translation_target_locales}
+
+- translation_target_locales is in BCP47 format.
+
+
+# Copyright and License Information
+
+Unless otherwise specified, all content, including all source code files and
+documentation files in this repository are:
+
+Copyright (c) 2014-2019 LG Electronics, Inc.
+
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+SPDX-License-Identifier: Apache-2.0

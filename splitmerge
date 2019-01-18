@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+# This script is intended to be used by the build only. Use other scripts for engineering use.
+
+if [ $# -lt 1 ]
+then
+	echo Error: not enough arguments specified.
+	echo Usage: splitmerge xliff_dir
+	exit 1
+fi
+
+XLIFFS=$1
+
+if [ ! -d $XLIFFS/tool ]
+then
+	echo Error: argument is not an XLIFF dir.
+	exit 2
+fi
+
+export CLASSPATH="$XLIFFS/tool/*:$XLIFFS/tool"
+
+java -Xms1024m -Xmx2048m -XX:+UseParNewGC -XX:-UseSplitVerifier -XX:+AggressiveOpts com.palm.localization.tools.XliffSplitMerge split_language $XLIFFS/new $XLIFFS/new/bylang

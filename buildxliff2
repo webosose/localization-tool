@@ -1,0 +1,17 @@
+#!/bin/sh
+#
+# This script is intended to be used by the build only. Use other scripts for engineering use.
+
+if [ $# -lt 2 ]
+then
+	echo Error: not enough arguments specified.
+	echo Usage: buildloc '[options]' component_name path_to_localization_data '[ locales ]'
+	exit 1
+fi
+
+# export JAVA_HOME=
+ROOT=$(dirname $0)/../..
+export PATH=$JAVA_HOME/bin:$PATH
+export CLASSPATH="$ROOT/usr/lib/novaloc/*:$ROOT/etc/novaloc"
+
+java -Xms4096m -Xmx4096m com.palm.localization.tools.Convert2XLIFF2 $*

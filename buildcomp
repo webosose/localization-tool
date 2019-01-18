@@ -1,0 +1,17 @@
+#!/bin/sh
+#
+# Set the NOVALOC environment variable to point to your installation
+# of the tools you want to execute. Otherwise, it will use the directory
+# from which this script was executed.
+
+if [ "$NOVALOC" = "" ]
+then
+	TOOL=$(dirname $0)
+else
+	TOOL=$NOVALOC
+fi
+export JAVA_HOME=/usr/lib/jvm/java-6-sun
+export PATH=$JAVA_HOME/bin:$PATH
+export CLASSPATH="$TOOL/*:$TOOL"
+
+java -Xmx1024M $NOVALOC_OPTS com.palm.localization.tools.BuildComparison $*
